@@ -2,7 +2,7 @@
 
 ## 作成した目的
 
-Laravel, Vue.js, , SPA の理解を深めるため
+Laravel, Vue.js, SPA の理解を深めるため
 
 ## 他のリポジトリ
 
