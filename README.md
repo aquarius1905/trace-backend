@@ -27,4 +27,8 @@ https://github.com/aquarius1905/trace-frontend
 
 ## テーブル設計
 
+![tbl-image](/public/images/table.jpg)
+
 ## ER 図
+
+![erd-image](/public/images/erd.jpg)
