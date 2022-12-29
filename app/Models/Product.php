@@ -15,4 +15,9 @@ class Product extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function purchase_histories()
+    {
+        return $this->hasMany(PurchaseHistory::class);
+    }
 }

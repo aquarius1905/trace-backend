@@ -17,7 +17,7 @@ class CreatePurchaseHistoriesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->uuid('order_number');
+            $table->uuid('order_number')->unique();
             $table->integer('number');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
