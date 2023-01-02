@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Requests\User\StoreRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -17,6 +18,7 @@ class UserController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        Log::Debug("UserController::store");
         $inputs = $request->all();
         $inputs['password'] = Hash::make($inputs['password']);
         $user = User::create($inputs);

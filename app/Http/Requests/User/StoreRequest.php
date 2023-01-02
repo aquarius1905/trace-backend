@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string|min:4',
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6'
         ];
     }
 }
