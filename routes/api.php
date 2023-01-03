@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\UserAuthController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Features;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource(
-    '/users',
-    UserController::class
-)->only(['store']);
+Route::prefix('/users')->group(function () {
+
+    Route::apiResource('/', UserController::class)->only(['store']);
+
+    Route::middleware('verified')->group(function () {
+        Route::post('/login', [UserAuthController::class, 'store']);
+    });
+});
+
+if (Features::enabled(Features::emailVerification())) {
+    $verificationLimiter = config('fortify.limiters.verification', '6,1');
+
+    Route::get(
+        '/email/verify/{id}/{hash}',
+        [VerifyUserEmailController::class, '__invoke']
+    )
+        ->middleware(['signed', 'throttle:' . $verificationLimiter])
+        ->name('user.verification.verify');
+}
