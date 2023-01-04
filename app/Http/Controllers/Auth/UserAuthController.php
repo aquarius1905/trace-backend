@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\CareManager\AttemptToAuthenticate;
+use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\User\LoginRequest;
@@ -54,7 +54,7 @@ class UserAuthController extends Controller
     /**
      * Get the authentication pipeline instance.
      *
-     * @param  \Laravel\Fortify\Http\Requests\LoginRequest  $request
+     * @param  \App\Http\Requests\User\LoginRequest  $request
      * @return \Illuminate\Pipeline\Pipeline
      */
     protected function loginPipeline(LoginRequest $request)

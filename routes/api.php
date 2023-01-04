@@ -34,4 +34,9 @@ if (Features::enabled(Features::emailVerification())) {
     )
         ->middleware(['signed', 'throttle:' . $verificationLimiter])
         ->name('user.verification.verify');
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/me', [UserAuthController::class, 'me']);
+        Route::post('/logout', [UserAuthController::class, 'destroy']);
+    });
 }
