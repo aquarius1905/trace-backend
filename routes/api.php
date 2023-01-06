@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -30,10 +31,9 @@ if (Features::enabled(Features::emailVerification())) {
 
     Route::get(
         '/email/verify/{id}/{hash}',
-        [VerifyUserEmailController::class, '__invoke']
+        [VerifyEmailController::class, '__invoke']
     )
-        ->middleware(['signed', 'throttle:' . $verificationLimiter])
-        ->name('user.verification.verify');
+        ->middleware(['signed', 'throttle:' . $verificationLimiter]);
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [UserAuthController::class, 'me']);
