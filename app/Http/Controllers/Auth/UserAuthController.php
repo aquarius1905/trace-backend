@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\AttemptToAuthenticate;
+use Laravel\Fortify\Actions\AttemptToAuthenticate;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\User\LoginRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Pipeline;
+use Illuminate\Support\Facades\Log;
 
 class UserAuthController extends Controller
 {
@@ -42,6 +43,7 @@ class UserAuthController extends Controller
             ->then(function ($request) {
                 $user =
                     User::where('email', $request->email)->firstOrFail();
+                Log::Debug($user);
                 $user->tokens()->delete();
                 $token = $user->createToken('auto_token')->plainTextToken;
 
