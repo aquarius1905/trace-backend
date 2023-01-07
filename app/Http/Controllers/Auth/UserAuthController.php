@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Laravel\Fortify\Actions\AttemptToAuthenticate;
+use App\Actions\AttemptToAuthenticate;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\User\LoginRequest;

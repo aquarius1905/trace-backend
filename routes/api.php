@@ -33,7 +33,8 @@ if (Features::enabled(Features::emailVerification())) {
         '/email/verify/{id}/{hash}',
         [VerifyEmailController::class, '__invoke']
     )
-        ->middleware(['signed', 'throttle:' . $verificationLimiter]);
+        ->middleware(['signed', 'throttle:' . $verificationLimiter])
+        ->name('user.verification.verify');
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [UserAuthController::class, 'me']);
