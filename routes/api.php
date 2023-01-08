@@ -20,10 +20,6 @@ use Laravel\Fortify\Features;
 Route::prefix('/users')->group(function () {
 
     Route::apiResource('/', UserController::class)->only(['store']);
-
-    Route::middleware('verified')->group(function () {
-        Route::post('/login', [UserAuthController::class, 'store']);
-    });
 });
 
 if (Features::enabled(Features::emailVerification())) {
@@ -35,9 +31,13 @@ if (Features::enabled(Features::emailVerification())) {
     )
         ->middleware(['signed', 'throttle:' . $verificationLimiter])
         ->name('user.verification.verify');
-
-    Route::middleware('auth:sanctum')->group(function () {
-        Route::get('/me', [UserAuthController::class, 'me']);
-        Route::post('/logout', [UserAuthController::class, 'destroy']);
-    });
 }
+
+Route::middleware('verified')->group(function () {
+    Route::post('/login', [UserAuthController::class, 'store']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', [UserAuthController::class, 'me']);
+    Route::post('/logout', [UserAuthController::class, 'destroy']);
+});

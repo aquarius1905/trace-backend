@@ -41,9 +41,7 @@ class UserAuthController extends Controller
     {
         return $this->loginPipeline($request)
             ->then(function ($request) {
-                $user =
-                    User::where('email', $request->email)->firstOrFail();
-                Log::Debug($user);
+                $user = User::where('email', $request->email)->firstOrFail();
                 $user->tokens()->delete();
                 $token = $user->createToken('auto_token')->plainTextToken;
 
