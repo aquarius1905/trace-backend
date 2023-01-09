@@ -9,7 +9,6 @@ use App\Http\Requests\User\LoginRequest;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Pipeline;
-use Illuminate\Support\Facades\Log;
 
 class UserAuthController extends Controller
 {
