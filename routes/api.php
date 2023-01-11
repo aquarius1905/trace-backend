@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,11 @@ use Laravel\Fortify\Features;
 |
 */
 
-Route::prefix('/users')->group(function () {
+Route::prefix('/products')->group(function () {
+    Route::apiResource('/', ProductController::class)->only(['index']);
+});
 
+Route::prefix('/users')->group(function () {
     Route::apiResource('/', UserController::class)->only(['store']);
 });
 
