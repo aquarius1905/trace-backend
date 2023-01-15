@@ -6,7 +6,6 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use Log;
 
 class VerifyEmailController extends Controller
 {
